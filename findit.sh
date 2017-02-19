@@ -10,5 +10,29 @@
 # out an error statement accordingly.
 #
 
-dir=$1
+dir=$1 
+if [ -d "$dir" ]; then
+	cd $dir
+	catlist=('*.cat') #list of cat files
+    fitslist=('*.fits') #list of fits file
+    fits_arr=${fitslist[*]}
+    for file in $fits_arr
+    	do 
+    		FNAME=(${file%.*})
+    		if [ -f "$FNAME.cat" ]; then
+    			:
+    		else 
+    			echo "Missing File: $FNAME.cat"
+    		fi
+    	done
+cd ..
+fi
+if [ ! -d "$dir" ]; then
+	echo "Directory  $dir does not exist... "
+fi
+
+
+
+
+
 
